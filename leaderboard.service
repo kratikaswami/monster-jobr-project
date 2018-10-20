@@ -1,0 +1,14 @@
+Description=Runs webservice that serves the leaderboard at 8080
+
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/sudo /usr/bin/docker run -d -p 8080:8080 node-app
+Restart=on-failure
+RestartSec=10
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

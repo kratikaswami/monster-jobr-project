@@ -1,0 +1,123 @@
+<% include partials/header.ejs %>
+<body>
+<div class="page-wrapper">
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <span class="navbar-brand mb-0 h1"><a href="/">Players/Teams Dashboard</a></span>
+    </nav>
+
+    <div class="container-fluid">
+        <h2 style="text-align: center"><u><%= title %></u></h2>
+
+        <br><br>
+        <h3 style="text-align: center">Activity Feed</h3>
+        <div class="table-responsive">
+            <% if (userPoints.length > 0) { %>
+                <table class="table table-hovered">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Points</th>
+                        <th>Reason</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% userPoints.forEach((userPoint, index) => { %>
+                        <tr>
+                            <th><%= userPoint.name %></th>
+                            <td><%= userPoint.points %></td>
+                            <td><%= userPoint.reason %></td>
+                        </tr>
+                    <% }) %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p class="text-center">No players found</p>
+            <% } %>
+        </div>
+
+        <hr>
+
+        <h3 style="text-align: center">Leader Board</h3>
+        <div class="row">
+            <div class="col-sm-6">
+                <h5>Players</h5>
+                <div class="table-responsive">
+                    <% if (userLeaderBoard.length > 0) { %>
+                        <table class="table table-hovered">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Points</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% userLeaderBoard.forEach((player, index) => { %>
+                                <tr>
+                                    <td><%= player.name %></td>
+                                    <td><%= player.points %></td>
+                                </tr>
+                            <% }) %>
+                            </tbody>
+                        </table>
+                    <% } else { %>
+                        <p class="text-center">No players found</p>
+                    <% } %>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <h5>Teams</h5>
+                <div class="table-responsive">
+                    <% if (teamLeaderBoard.length > 0) { %>
+                        <table class="table table-hovered">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Points</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% teamLeaderBoard.forEach((team, index) => { %>
+                                <tr>
+                                    <th><%= team.name %></th>
+                                    <th><%= team.total_points %></th>
+                                </tr>
+                            <% }) %>
+                            </tbody>
+                        </table>
+                    <% } else { %>
+                        <p class="text-center">No Team found</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <h3 style="text-align: center">Percent Breakdown</h3>
+        <div class="table-responsive">
+            <% if (teamPercentLeaderBoard.length > 0) { %>
+                <table class="table table-hovered">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Team Name</th>
+                        <th>Team Percent</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% teamPercentLeaderBoard.forEach((team, index) => { %>
+                        <tr>
+                            <th><%= team.name %></th>
+                            <th><%= team.percent_points %>%</th>
+                        </tr>
+                    <% }) %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p class="text-center">No Team found</p>
+            <% } %>
+        </div>
+    </div>
+</div>
+</body>
+</html>
